@@ -1,0 +1,43 @@
+digraph d {
+	rankdir=LR
+	nodesep=0.1
+	node [fontname="Helvetica,Sans", fontsize=9, penwidth=0.5, margin="0.05, 0.04", height="0.2" ]
+
+  /* scopes */
+  node [shape=plaintext];
+  root [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ RootScope ]</td></tr></table>>]
+  parent [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ParentScope ]</td></tr>
+  <tr><td port="myArrayOfPrimitives">myArrayOfPrimitives</td></tr>
+  <tr><td port="myArrayOfObjects">myArrayOfObjects</td></tr>
+  </table>>]
+  child1 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ChildScope1 ]</td></tr>
+  <tr><td port="num">num</td></tr>
+  </table>>]
+  child2 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ChildScope2 ]</td></tr>
+  <tr><td port="num">num</td></tr>
+  </table>>]
+
+  /* objects */
+  myArrayOfPrimitives [label=<<table bgcolor="skyblue1" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td>11</td><td>22</td></tr></table>>]
+  myArrayOfObjects [label=<<table bgcolor="skyblue1" border="1" cellborder="1" cellpadding="2" cellspacing="2">
+  <tr><td>...</td></tr></table>>]
+
+  /* literals */
+  node [fillcolor=gray94, shape=box, style=filled]
+  num11 [label="11"]
+  num22 [label="22"]
+  
+  /* references */
+  parent:proto -> root:proto [style = dashed]
+  child1:proto -> parent:proto [style = dashed]
+    child1:num -> num11
+  child2:proto -> parent:proto [style = dashed]
+    child2:num -> num22
+  parent:myArrayOfPrimitives -> myArrayOfPrimitives
+  parent:myArrayOfObjects -> myArrayOfObjects
+}

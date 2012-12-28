@@ -1,0 +1,50 @@
+digraph d {
+	rankdir=LR
+	nodesep=0.1
+	node [shape=Mrecord, fontname="Helvetica,Sans", fontsize=9, penwidth=0.5, margin="0.05, 0.04", height="0.2" ]
+
+  /* scopes */
+  node [shape=plaintext];
+  root [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ RootScope ]</td></tr></table>>]
+  parent [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ParentScope ]</td></tr>
+  <tr><td port="aString">aString</td></tr>
+  <tr><td port="aNumber">aNumber</td></tr>
+  <tr><td port="anArray">anArray</td></tr>
+  <tr><td port="anObject">anObject</td></tr>
+  <tr><td port="aFunction">aFunction</td></tr></table>>]
+  child [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="cproto">[ ChildScope ]</td></tr>
+  <tr><td port="aString" cellspacing="1"><font point-size="9">aString</font></td></tr></table>>]
+
+  /* objects */
+  anArray [label=<<table bgcolor="skyblue1" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="index0">10</td><td><font color="crimson">22</font></td><td>30</td></tr></table>>]
+  anObject [label=<<table bgcolor="skyblue1" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="prop1">property1</td></tr>
+  <tr><td port="prop2">property2</td></tr></table>>]
+  
+  /* functions */
+  aFunction [label=<<table bgcolor="darkseagreen2" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td>aFunction()</td></tr>
+  <tr><td>{ return 'parent output' }</td></tr></table>>]
+  
+  /* literals */
+  node [fillcolor=gray94, shape=box, style=filled]
+  aString [label="\"parent string\""]
+  aStringC [label="\"child string\""]
+  aNumber [label="100"]
+  prop1 [label="\"child prop1\"", fontcolor=crimson]
+  
+  /* references */
+  parent:proto -> root:proto [style = dashed]
+  child:cproto -> parent:proto [style = dashed]
+    child:aString -> aStringC
+  parent:aString -> aString
+  parent:aNumber -> aNumber
+  parent:anArray -> anArray
+  parent:anObject -> anObject
+    anObject:prop1 -> prop1
+  parent:aFunction -> aFunction
+}
