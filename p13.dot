@@ -1,0 +1,49 @@
+digraph d {
+	rankdir=LR
+	nodesep=0.1
+	node [fontname="Helvetica,Sans", fontsize=9, penwidth=0.5, margin="0.05, 0.04", height="0.2" ]
+
+  /* scopes */
+  node [shape=plaintext];
+  root [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ RootScope ]</td></tr></table>>]
+  parent [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ParentScope ]</td></tr>
+  <tr><td port="parentProp1">parentProp1</td></tr>
+  <tr><td port="parentProp2">parentProp2</td></tr>
+  </table>>]
+  isolateScope [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ IsolateScope ]</td></tr>
+  <tr><td port="parent">$parent</td></tr>
+  <tr><td port="nextSibling">$$nextSibling</td></tr>
+  <tr><td port="someIsolateProp">someIsolateProp</td></tr>
+  <tr><td port="interpolatedProp">interpolatedProp</td></tr>
+  <tr><td port="twowayBindingProp">twowayBindingProp</td></tr>
+  </table>>]
+  transcludedScope [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ TranscludedScope ]</td></tr>
+  <tr><td port="parent">$parent</td></tr>
+  </table>>]
+  Object [label=<<table bgcolor="gold2" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">Object</td></tr>
+  </table>>]
+
+  /* literals */
+  node [fillcolor=gray94, shape=box, style=filled]
+  11 [label="11"]
+  Mark [label="\"Mark\""]
+  isolateValue [label="\"I'm isolated\""]
+
+  /* references */
+  parent:proto -> root:proto [style = dashed]
+  parent:parentProp1 -> 11
+  parent:parentProp2 -> Mark
+  isolateScope:proto -> Object [style = dashed]
+  isolateScope:parent -> parent:proto
+  isolateScope:nextSibling -> transcludedScope:proto
+  isolateScope:interpolatedProp -> parent:parentProp1 [label=<@>, style=dotted, dir=back]
+  isolateScope:twowayBindingProp -> parent:parentProp2[label=<=>, style=dotted, dir=both]
+  isolateScope:someIsolateProp -> isolateValue
+  transcludedScope:proto -> parent:proto [style=dashed]
+  transcludedScope:parent -> parent:proto
+}
