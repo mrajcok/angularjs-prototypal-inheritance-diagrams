@@ -63,6 +63,6 @@ digraph d {
   parent:anObject -> anObject
     anObject:prop1 -> prop1
   parent:aFunction -> aFunction
-  anObjectC:name -> name
-  anObjectC:country -> country
+  anObjectC:name -> name       [color=crimson]
+  anObjectC:country -> country [color=crimson]
 }
