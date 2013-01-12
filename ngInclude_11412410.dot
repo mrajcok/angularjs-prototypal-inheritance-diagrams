@@ -1,0 +1,33 @@
+digraph d {
+	rankdir=LR
+	nodesep=0.1
+	node [shape=Mrecord, fontname="Helvetica,Sans", fontsize=10, penwidth=0.5, margin="0.05, 0.04", height="0.2" ]
+
+  /* scopes */
+  node [shape=plaintext];
+  root [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ RootScope ]</td></tr></table>>]
+  parent [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ HomeCtrl Scope ]</td></tr>
+  <tr><td port="lines">lines</td></tr>
+  </table>>]
+  child1 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ngInclude Scope ]</td></tr>
+  <tr><td port="lineText" color="firebrick"><font color="firebrick">lineText</font></td></tr>
+  </table>>]
+
+  /* objects */
+  array [label=<<table bgcolor="skyblue1" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td>...</td><td>...</td></tr></table>>]
+
+  /* literals */
+  node [fillcolor=gray94, shape=box, style=filled]
+  node [color=firebrick, fontcolor=firebrick]
+  lineText [label="\"some text I typed\""]
+  
+  /* references */
+  parent:proto -> root:proto [style = dashed]
+  parent:lines -> array
+  child1:proto -> parent:proto [style = dashed]
+  child1:lineText -> lineText [color=firebrick]
+}

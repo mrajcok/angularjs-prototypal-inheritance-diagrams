@@ -1,0 +1,43 @@
+digraph d {
+	rankdir=LR
+	nodesep=0.1
+	node [fontname="Helvetica,Sans", fontsize=10, penwidth=0.5, margin="0.05, 0.04", height="0.2" ]
+
+  /* scopes */
+  node [shape=plaintext];
+  root [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ RootScope ]</td></tr></table>>]
+  parent [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ParentScope ]</td></tr>
+  <tr><td port="list">list</td></tr>
+  </table>>]
+  child1 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ngRepeat ChildScope #1 ]</td></tr>
+  <tr><td port="item" color="firebrick"><font color="firebrick">item</font></td></tr>
+  </table>>]
+  child2 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ngRepeat ChildScope #2 ]</td></tr>
+  <tr><td port="item" color="firebrick"><font color="firebrick">item</font></td></tr>
+  </table>>]
+  child3 [label=<<table bgcolor="beige" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">[ ngRepeat ChildScope #3 ]</td></tr>
+  <tr><td port="item" color="firebrick"><font color="firebrick">item</font></td></tr>
+  </table>>]
+
+  /* objects */
+  list [label=<<table bgcolor="skyblue1" border="1" cellborder="1" cellpadding="2" cellspacing="2">
+  <tr><td port="obj1">{value: "value 1"}</td><td port="obj2">{value: "value 2"}</td><td port="obj3">{value: "value 3"}</td></tr></table>>]
+
+  /* literals */
+  node [fillcolor=gray94, shape=box, style=filled]
+  
+  /* references */
+  parent:proto -> root:proto [style = dashed]
+  parent:list -> list
+  child1:proto -> parent:proto [style = dashed]
+    child1:item -> list:obj1
+  child2:proto -> parent:proto [style = dashed]
+    child2:item -> list:obj2
+  child3:proto -> parent:proto [style = dashed]
+    child3:item -> list:obj3
+}
