@@ -14,3 +14,6 @@ http://stackoverflow.com/questions/11752977/angularjs-ng-model-scope-in-ng-repea
 http://stackoverflow.com/questions/12977894/what-is-the-angularjs-way-to-databind-many-inputs
 http://stackoverflow.com/questions/14005443/angular-binding-inside-repeat
 http://stackoverflow.com/questions/14101099/ng-include-causes-the-controller-block-to-re-render
+
+To create a png from a dot file:
+  dot some_file.dot -Tpng -o some_file.png
