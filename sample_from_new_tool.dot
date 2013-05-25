@@ -1,0 +1,38 @@
+digraph {
+rankdir=LR
+nodesep=0.05
+node [fontname="sans", fontsize=9, margin="0.02, 0.05", height="0.2" ]
+/* scopes */
+node [shape=plaintext]
+rootScope [label=<<table bgcolor="cornsilk2" color="gray70" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+<tr><td colspan="2" port="proto">[ $rootScope ]</td></tr>
+<tr><td>$id:</td><td bgcolor="gray85">002</td></tr>
+</table>>]
+
+scope003 [label=<<table bgcolor="beige" color="gray40" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+<tr><td colspan="2" port="proto">[  scope ]</td></tr>
+<tr><td>$id:</td><td bgcolor="gray85">003</td></tr>
+</table>>]
+
+scope004 [label=<<table bgcolor="beige" color="gray40" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+<tr><td colspan="2" port="proto">[ dir isolate scope ]</td></tr>
+<tr><td>$id:</td><td bgcolor="gray85">004</td></tr>
+<tr><td bgcolor="khaki1">data:</td><td bgcolor="thistle2"><table border="0" cellpadding="2" cellspacing="0" cellborder="1" bgcolor="thistle2" color="plum3"><tr><td>title:</td><td>my title</td></tr></table></td></tr>
+<tr><td>title:</td><td bgcolor="gray85"></td></tr>
+</table>>]
+
+scope005 [label=<<table bgcolor="beige" color="gray40" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+<tr><td colspan="2" port="proto">[ transcluded scope ]</td></tr>
+<tr><td>$id:</td><td bgcolor="gray85">005</td></tr>
+</table>>]
+
+Scope [fillcolor=cornsilk2, color= gray50,shape=box, style=filled, label="Scope"]
+scope004 -> scope005 [color=peachpuff3, style=solid]
+rootScope -> Scope [style=dashed]
+scope003 -> rootScope [color=gray]
+scope003 -> rootScope [style=dashed]
+scope004 -> scope003 [color=gray]
+scope004 -> Scope [style=dashed]
+scope005 -> scope003 [color=gray]
+scope005 -> scope003 [style=dashed]
+}
