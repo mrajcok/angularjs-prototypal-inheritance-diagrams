@@ -19,8 +19,8 @@ digraph d {
   <tr><td port="interpolatedProp">interpolatedProp</td></tr>
   <tr><td port="twowayBindingProp">twowayBindingProp</td></tr>
   </table>>]
-  Object [label=<<table bgcolor="gold2" border="0" cellborder="1" cellpadding="2" cellspacing="0">
-  <tr><td port="proto">Object</td></tr>
+  Scope [label=<<table bgcolor="gold2" border="0" cellborder="1" cellpadding="2" cellspacing="0">
+  <tr><td port="proto">Scope</td></tr>
   </table>>]
 
   /* literals */
@@ -33,7 +33,7 @@ digraph d {
   parent:proto -> root:proto [style = dashed]
   parent:parentProp1 -> 11
   parent:parentProp2 -> Mark
-  isolateScope:proto -> Object [style = dashed]
+  isolateScope:proto -> Scope [style = dashed]
   isolateScope:parent -> parent:proto
   isolateScope:interpolatedProp -> parent:parentProp1 [label=<@>, style=dotted, dir=back]
   isolateScope:twowayBindingProp -> parent:parentProp2[label=<=>, style=dotted, dir=both]
